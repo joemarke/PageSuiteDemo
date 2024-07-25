@@ -117,29 +117,29 @@ extension FeedView.ContentView {
                                     presentedArticleURL = .init(url: url)
                                 }
                             }
-                            .sheet(item: $presentedArticleURL) { urlItem in
-                                NavigationStack {
-                                    WebView(url: urlItem.url)
-                                        .toolbar {
-                                            ToolbarItem(placement: .topBarLeading) {
-                                                Button {
-                                                    presentedArticleURL = nil
-                                                } label: {
-                                                    Text("Done")
-                                                        .font(.headline)
-                                                }
-                                            }
-                                        }
-                                        .onDisappear {
-                                            presentedArticleURL = nil
-                                        }
-                                }
-                            }
                         
                         Divider()
                     }
                 }
                 .padding(16)
+            }
+            .sheet(item: $presentedArticleURL) { urlItem in
+                NavigationStack {
+                    WebView(url: urlItem.url)
+                        .toolbar {
+                            ToolbarItem(placement: .topBarLeading) {
+                                Button {
+                                    presentedArticleURL = nil
+                                } label: {
+                                    Text("Done")
+                                        .font(.headline)
+                                }
+                            }
+                        }
+                        .onDisappear {
+                            presentedArticleURL = nil
+                        }
+                }
             }
         }
     }
